@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="bg-styling"></div>
+    <div class="gaming-section">
+      <div class="gaming-header">
+        <div class="game-title-1">Tic</div>
+        <div class="game-title-2">Tac</div>
+        <div class="game-title-3">Toe</div>
+        <div class="gaming-image">
+          <img src="../assets/Gaming-amico.svg" alt="gaming-icon" />
+          <div class="gaming-info">
+            <div class="starter-msg">Let's get Started 🤝</div>
+            <div class="starter-info">
+              Don't give a chance for your Opponent to win, It's Play time !
+            </div>
+          </div>
+        </div>
+
+        <div class="game-nav-bar">
+          <header class="navigation-tab">
+            <div class="navigation-icons active inactive" id="home-icon">
+              <img src="../assets/home-icon.png" alt="home-icon" />
+            </div>
+            <div class="navigation-icons">
+              <a href="./profile.html">
+                <img src="../assets/user.png" alt="profile-icon" />
+              </a>
+            </div>
+            <div class="navigation-icons">
+              <a href="./index.html">
+                <img src="../assets/log-out-icon.png" alt="home-icon"
+              /></a>
+            </div>
+          </header>
+        </div>
+      </div>
+
+      <div class="game-mode active">
+        Choose Your Opponent
+        <div class="option-selector">
+          <div class="player-mode">
+            <img
+              id="player-vs-player"
+              src="../assets/player vs player.png"
+              alt="player-vs-player-image"
+            />
+          </div>
+          <div class="player-mode">
+            <img
+              id="player-vs-pc"
+              src="../assets/player vs pc.png"
+              alt="player-vs-pc-image"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="back-arrow-button active inactive">
+        <img
+          src="../assets/next-icon.png"
+          alt="next-icon"
+          height="20px"
+          width="20px"
+        />Back
+      </div>
+
+      <div class="next-section-button active" id="next-section">
+        <div>Next</div>
+        <img
+          src="../assets/next-icon.png"
+          alt="next-icon"
+          height="20px"
+          width="20px"
+        />
+      </div>
+
+      <div class="player-options">
+        <div class="choice active inactive">
+          <div class="user-preference">
+            <div class="user-choice-question">Do you want to start first ?</div>
+            <div class="option-list">
+              <input type="radio" name="user-choice" id="choice-yes" checked />
+              <label for="choice-yes">Yes</label>
+              <input type="radio" name="user-choice" id="choice-no" />
+              <label for="choice-no">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="character-selection active inactive">
+          <div>
+            <div class="username-heading">Choose Your Character You</div>
+            <div class="selection-characters">
+              <img
+                class="x-icon"
+                src="../assets/x-icon.png"
+                alt="x-icon"
+                height="55px"
+                width="55px"
+              />
+              <img
+                class="o-icon"
+                src="../assets/o-icon.png"
+                alt="o-icon"
+                height="55px"
+                width="55px"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div class="opponent-name">
+              <div class="opponent-name-input">
+                <label for="opponent-name" class="username-heading"
+                  >Username for Player 2</label
+                >
+                <div id="opponent-name"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="character-choice active inactive">
+          <div>
+            <div class="username-heading">Choose Your Character</div>
+            <div class="selection-characters">
+              <img
+                class="x-icon"
+                src="../assets/x-icon.png"
+                alt="x-icon"
+                height="55px"
+                width="55px"
+              />
+              <img
+                class="o-icon"
+                src="../assets/o-icon.png"
+                alt="o-icon"
+                height="55px"
+                width="55px"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div class="difficulty-heading">Choose Game Difficulty</div>
+            <input
+              type="radio"
+              name="difficulty-choice"
+              id="choice-easy"
+              checked
+            />
+            <label for="choice-easy">Easy</label><br />
+            <input type="radio" name="difficulty-choice" id="choice-medium" />
+            <label for="choice-medium">Medium</label><br />
+            <input
+              type="radio"
+              name="difficulty-choice"
+              id="choice-impossible"
+            />
+            <label for="choice-impossible">Impossible to Win</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-game-button active inactive">
+        <a href="./game.html">Start Game</a>
+      </div>
+    </div>
+    <script src="../scripts/web-api.js"></script>
+    <script src="../scripts/home-page.js"></script>
+  </body>
+</html>

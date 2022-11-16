@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="bg-styling"></div>
+    <div class="gaming-section">
+      <div class="profile-gaming-header">
+        <div class="game-title-1">Tic</div>
+        <div class="game-title-2">Tac</div>
+        <div class="game-title-3">Toe</div>
+        <div class="profile-gaming-image">
+          <img src="../assets/Data analysis-amico.svg" alt="gaming-icon" />
+          <div class="gaming-info">
+            <div class="starter-msg">Update & Upgrade Yourselves😃</div>
+            <div class="starter-info">Track your Progress here</div>
+          </div>
+        </div>
+
+        <div class="game-nav-bar">
+          <header class="navigation-tab">
+            <div class="navigation-icons active" id="home-icon">
+              <a href="./home.html">
+                <img src="../assets/home-icon.png" alt="home-icon" />
+              </a>
+            </div>
+            <div class="navigation-icons active inactive">
+              <a href="./profile.html">
+                <img src="../assets/user.png" alt="profile-icon" />
+              </a>
+            </div>
+            <div class="navigation-icons">
+              <a href="./index.html">
+                <img src="../assets/log-out-icon.png" alt="home-icon"
+              /></a>
+            </div>
+          </header>
+        </div>
+      </div>
+
+      <div class="user-profile-holder">
+        <div class="user-profile">
+          <div class="profile-image"></div>
+          <div class="profile-username"></div>
+        </div>
+
+        <div class="collective-data-of-matches">
+          <div class="games total-games">
+            <div class="gameplay-heading">Games Played</div>
+            <div id="total-games-played">100</div>
+          </div>
+
+          <div class="games won">
+            <div class="gameplay-heading">Won</div>
+            <div id="games-won">50</div>
+          </div>
+
+          <div class="games lost">
+            <div class="gameplay-heading">Lost</div>
+            <div id="games-lost">30</div>
+          </div>
+
+          <div class="games draw">
+            <div class="gameplay-heading">Draw</div>
+            <div id="draw-games">20</div>
+          </div>
+        </div>
+
+        <div class="game-history">
+          <div class="history-heading">
+            <div>Opponent Name</div>
+            <div>Game Status</div>
+            <div>Time Taken</div>
+            <div>Difficulty</div>
+            <div>Replay</div>
+          </div>
+          <div class="game-history-data"></div>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/web-api.js"></script>
+    <script type="module" src="../scripts/profile.js"></script>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Arvo"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="bg-styling"></div>
+    <div class="gaming-section">
+      <div class="game-title-1">Tic</div>
+      <div class="game-title-2">Tac</div>
+      <div class="game-title-3">Toe</div>
+      <div class="login-page active" id="login-page">
+        <div id="login-snackbar" class="snackbar active inactive">
+          SignUp successful. Login to Continue
+        </div>
+
+        <div id="login-snackbar-notfound" class="snackbar active inactive">
+          User Not Found.. Please SignUp to create Account
+        </div>
+        <div class="login-heading">Login</div>
+        <form id="login-form">
+          <div>
+            <label for="email-id" class="label-heading">Email Id</label>
+          </div>
+          <div>
+            <input
+              class="user-input"
+              type="text"
+              id="login-email-id"
+              placeholder="Enter Your Email Id"
+              autocomplete="off"
+            />
+          </div>
+          <div class="login-email-id-warning"></div>
+          <div>
+            <label for="login-password" class="label-heading">Password</label>
+          </div>
+          <div>
+            <input
+              class="user-input"
+              type="password"
+              id="login-password"
+              placeholder="Enter your Password"
+            />
+            <i class="fas fa-duotone fa-eye fa-eye-slash" id="eye-icon-1"></i>
+            <div id="info-icon-login">
+              <i class="fas fa-duotone fa-info"></i>
+            </div>
+            <div class="password-requirement-login">
+              * Password should contain minimum of 8 & maximum of 15 characters
+              <br />
+              * Password should contain atleast one number & one special case
+              character
+            </div>
+          </div>
+          <div class="login-password-warning"></div>
+          <button type="button" id="login-button">Log In</button>
+        </form>
+        <div class="sign-up-info">
+          Don't you have an account ? <a href="#sign-up-page">Sign Up</a>
+        </div>
+      </div>
+      <div class="login-images">
+        <div class="login-image-holder">
+          <div class="login-page-images">
+            <div class="login-img">
+              <img
+                class="welcome-img"
+                src="../assets/Logic-amico.svg"
+                alt="thinking-image"
+              />
+            </div>
+            <div class="login-image-notes">
+              <div class="welcome-img-heading">
+                Let's be a Logical Thinker !
+              </div>
+              <div class="welcome-img-texts">
+                Think in a logical way to beat your opponent😃
+              </div>
+            </div>
+          </div>
+          <div class="login-page-images">
+            <div class="login-img">
+              <img
+                class="welcome-img"
+                src="../assets/Questions-pana.svg"
+                alt="curious-image"
+              />
+            </div>
+            <div class="login-image-notes">
+              <div class="welcome-img-heading">Let's be Inquisitive</div>
+              <div class="welcome-img-texts">Be curious & interested😉</div>
+            </div>
+          </div>
+          <div class="login-page-images">
+            <div class="login-img">
+              <img
+                class="welcome-img"
+                src="../assets/Success factors-amico.svg"
+                alt="winner-image"
+              />
+            </div>
+            <div class="login-image-notes">
+              <div class="welcome-img-heading">Let's be a Winner</div>
+              <div class="welcome-img-texts">Win and be Cool😎</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-up-page inactive" id="sign-up-page">
+        <div class="sign-up-heading">Sign-Up</div>
+        <form id="sign-up-form">
+          <div>
+            <label for="username" class="label-heading">Username</label>
+            <div>
+              <input
+                class="user-input"
+                type="text"
+                id="username"
+                autocomplete="off"
+                maxlength="15"
+              />
+            </div>
+          </div>
+          <div class="username-warning"></div>
+          <div>
+            <label for="email-id" class="label-heading">Email Id</label>
+          </div>
+          <div>
+            <input
+              class="user-input"
+              type="text"
+              id="sign-up-email-id"
+              autocomplete="off"
+            />
+          </div>
+          <div class="email-id-warning"></div>
+          <div>
+            <label for="sign-up-password" class="label-heading">Password</label>
+          </div>
+          <div>
+            <input class="user-input" type="password" id="sign-up-password" />
+            <i class="fas fa-duotone fa-eye fa-eye-slash" id="eye-icon-2"></i>
+            <div id="info-icon">
+              <i class="fas fa-duotone fa-info"></i>
+            </div>
+            <div class="password-requirement">
+              * Password should contain minimum of 8 & maximum of 15 characters
+              <br />
+              * Password should contain atleast one number & one special case
+              character
+            </div>
+          </div>
+          <div>
+            <label for="confirm-password" class="label-heading"
+              >Confirm Password</label
+            >
+          </div>
+          <div>
+            <input class="user-input" type="text" id="confirm-password" />
+          </div>
+          <div class="password-warning"></div>
+          <button id="sign-up-button" type="button">Create Account</button>
+        </form>
+        <div class="login-info">
+          Already have an account ? <a href="#login-page">Log In</a>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/index.js"></script>
+    <script src="../scripts/web-api.js"></script>
+  </body>
+</html>

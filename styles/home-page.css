@@ -1,0 +1,248 @@
+.gaming-header {
+  border-radius: 15px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  height: 230px;
+}
+
+.gaming-image {
+  display: flex;
+  height: 250px;
+  justify-content: space-between;
+  left: 25%;
+  position: absolute;
+  top: -10px;
+  width: 550px;
+}
+
+.gaming-info {
+  align-self: center;
+  text-align: center;
+  width: 250px;
+}
+
+.starter-msg {
+  font-size: 18px;
+  font-weight: bold;
+  justify-self: center;
+  margin: 5px;
+}
+
+.game-nav-bar {
+  background: linear-gradient(-45deg, rgb(243, 69, 121), rgb(123, 24, 180));
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  height: 60px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: fit-content;
+}
+
+.navigation-tab {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navigation-icons {
+  height: 30px;
+  margin: 15px;
+  width: 30px;
+}
+
+.navigation-icons img {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
+
+.navigation-icons:hover {
+  filter: invert(1);
+}
+
+.navigation-icons:focus {
+  filter: invert(1);
+}
+
+.game-mode {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: bold;
+  height: 230px;
+  justify-content: space-between;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.option-selector {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+}
+
+.player-mode {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  justify-content: center;
+  width: 160px;
+}
+
+.player-mode img {
+  border-radius: 10px;
+  cursor: pointer;
+  height: 170px;
+  width: 170px;
+}
+
+.player-mode:hover {
+  transform: scale(1.1);
+}
+
+.next-section-button,
+.start-game-button a {
+  align-items: center;
+  background: linear-gradient(rgb(248, 36, 100), rgb(93, 12, 140));
+  border-radius: 15px;
+  bottom: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: space-evenly;
+  position: absolute;
+  right: 10px;
+  width: 80px;
+}
+
+.start-game-button a {
+  text-decoration: none;
+  width: 100px;
+}
+
+.character-selection {
+  display: flex;
+  justify-content: space-between;
+  width: 625px;
+}
+
+.username-heading,
+.difficulty-heading,
+.user-choice-question {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 45px;
+}
+
+.selection-characters {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.selection-characters img {
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 5px 10px;
+}
+
+.selection-characters img:hover {
+  transform: scale(1.1);
+}
+
+#opponent-name {
+  background-clip: text;
+  background: linear-gradient(rgb(248, 36, 100), rgb(219, 16, 238));
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.4));
+  font-size: 20px;
+  font-weight: bold;
+  height: 35px;
+  margin: 20px;
+  padding: 5px;
+  width: 230px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.opponent-name-input {
+  margin-top: 45px;
+}
+
+.player-options {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.option-list {
+  display: flex;
+  justify-content: center;
+}
+
+.option-list label {
+  cursor: pointer;
+  margin: 10px;
+}
+
+.character-choice {
+  display: flex;
+  justify-content: space-evenly;
+  width: 650px;
+}
+
+.character-choice > div {
+  margin: 0 50px;
+}
+
+.character-choice input {
+  margin: 10px;
+}
+
+.character-choice label {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.back-arrow-button {
+  align-items: center;
+  background: linear-gradient(rgb(248, 36, 100), rgb(93, 12, 140));
+  border-radius: 15px;
+  bottom: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: space-evenly;
+  position: absolute;
+  left: 10px;
+  width: 80px;
+}
+
+.back-arrow-button img {
+  transform: rotate(180deg);
+}
+
+input[type="radio"] {
+  accent-color: blueviolet;
+}
+
+.active {
+  animation: slide 1.5s linear;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.inactive {
+  display: none;
+}

@@ -1,0 +1,146 @@
+.user-profile {
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  justify-content: center;
+  width: fit-content;
+}
+
+.profile-image {
+  align-items: center;
+  background: linear-gradient(45deg, rgb(248, 36, 100), rgb(93, 12, 140));
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  font-size: 22px;
+  font-weight: 570;
+  height: 45px;
+  justify-content: center;
+  margin: 10px;
+  width: 45px;
+}
+
+.profile-username {
+  align-items: center;
+  display: flex;
+  height: 45px;
+  margin: 10px;
+  width: fit-content;
+}
+
+.collective-data-of-matches {
+  background-color: rgb(210, 216, 219);
+  border-radius: 10px;
+  display: flex;
+  height: 100px;
+  justify-content: space-evenly;
+  width: 350px;
+}
+
+.games {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.games div {
+  margin: 8px;
+}
+
+.gameplay-heading {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.game-history {
+  background-color: rgb(236, 221, 240);
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 265px;
+  width: 800px;
+}
+
+.history-heading {
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  display: flex;
+  min-height: 50px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.game-history-data {
+  overflow-y: auto;
+}
+
+.game-data {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.profile-opponent-name,
+.profile-game-status,
+.time-taken,
+.difficulty-mode,
+.replay {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.profile-opponent-name {
+  display: flex;
+  flex-wrap: wrap;
+  width: 7%;
+}
+
+.profile-game-status {
+  width: 20%;
+}
+
+.difficulty-mode {
+  width: 10%;
+}
+
+.user-profile-holder {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: 70%;
+  justify-content: space-evenly;
+  margin-left: 120px;
+  width: 800px;
+}
+
+.sort-icon {
+  cursor: pointer;
+  height: 10px;
+  margin-left: 2px;
+  width: 10px;
+}
+
+::-webkit-scrollbar {
+  border-radius: 3px;
+  height: 7px;
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d4d3d3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #840569;
+  border-radius: 4px;
+}

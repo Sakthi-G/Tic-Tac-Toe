@@ -1,0 +1,27 @@
+@import url(./login-and-signUp-page.css);
+@import url(./home-page.css);
+@import url(./game-page.css);
+@import url(./profile-page.css);
+@import url(./replay.css);
+
+* {
+  box-sizing: border-box;
+  font-family: Arvo;
+  margin: 0px;
+  padding: 0px;
+}
+
+body,
+html {
+  align-items: center;
+  background: url(../assets/bg-image.jpg);
+  background-size: cover;
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+::selection {
+  background-color: blueviolet;
+}
