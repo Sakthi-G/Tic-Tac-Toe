@@ -28,7 +28,7 @@ app.get("/index.html", (request, response) => {
 });
 
 app.get("/home.html", (request, response) => {
-  response.render(path.join(__dirname, "../html/home.html"));
+  response.sendFile(path.join(__dirname, "../html/home.html"));
 });
 
 app.get("/replay.html", (request, response) => {
@@ -100,6 +100,7 @@ app.post("/gameHistory", (request, response) => {
   let matchReport = JSON.parse(
     fs.readFileSync(path.resolve(__dirname, "../data/game-history.json"))
   );
+
   matchReport[request.body.player + " " + ++counter] = {
     opponentName: request.body.opponentGamerName,
     gameResult: request.body.matchResult,
@@ -110,6 +111,7 @@ app.post("/gameHistory", (request, response) => {
     player2: request.body.player2,
     winCondition: request.body.winState,
   };
+
   fs.writeFile(
     path.resolve(__dirname, "../data/game-history.json"),
     JSON.stringify(matchReport),

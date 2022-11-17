@@ -9,12 +9,17 @@ let gameHistoryData = document.querySelector(".game-history-data"),
   drawGames = document.getElementById("draw-games"),
   profileUserName = document.querySelector(".profile-username");
 
+let accountHolder = sessionStorage.getItem("accountHolder");
+
 let totalGames = 0,
   winGame = 0,
   lostGame = 0,
   draw = 0;
 Object.keys(gameDetails).forEach((element) => {
-  if (element.split(" ")[0] !== "undefined") {
+  if (
+    element.split(" ")[0] !== "undefined" &&
+    element.split(" ")[0] === accountHolder
+  ) {
     totalGames++;
     if (gameDetails[element].gameResult === "Won") winGame++;
     else if (gameDetails[element].gameResult === "Lost") lostGame++;
@@ -30,7 +35,10 @@ profileUserName.textContent = sessionStorage.getItem("accountHolder");
 userNameFirstLetter.textContent = sessionStorage.getItem("accountHolder")[0];
 
 Object.keys(gameDetails).forEach((element) => {
-  if (element.split(" ")[0] !== "undefined") {
+  if (
+    element.split(" ")[0] !== "undefined" &&
+    element.split(" ")[0] === accountHolder
+  ) {
     gameHistoryData.innerHTML += `<div class="game-data">
                 <div class="profile-opponent-name"> ${
                   gameDetails[element].opponentName
