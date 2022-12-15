@@ -28,6 +28,11 @@ let buttonIndex = sessionStorage.getItem("button"),
   gamePlayOrder = [],
   gameCells = [];
 
+document.querySelectorAll(".cell").forEach((cell) => {
+  cell.innerHTML = null;
+  cell.style = "background:none";
+});
+
 Object.keys(gameDetails).forEach((element) => {
   if (element.split(" ")[1] === buttonIndex)
     replayObject = gameDetails[element];
@@ -92,10 +97,14 @@ playAgainButton.addEventListener("click", () => {
   clearInterval(initialTimer);
   document.querySelectorAll(".cell").forEach((cell) => {
     cell.innerHTML = null;
-    cell.style = "backgroundcolor:none";
+    cell.style = "background:none";
   });
   cnt = cnt1 = 0;
   initialTimer = setInterval(appendCharacter, playbackTime);
+  normalSpeedButton.classList.add("selected-speed");
+  if (reducedSpeedButton.classList.contains("selected-speed"))
+    reducedSpeedButton.classList.remove("selected-speed");
+  else increasedSpeedButton.classList.remove("selected-speed");
 });
 
 opponentName.textContent = replayObject.opponentName;
@@ -109,9 +118,6 @@ choosenCharacter[0].innerHTML = replayObject.player1;
 choosenCharacter[1].innerHTML = replayObject.player2;
 playersName[1].innerHTML = replayObject.opponentName;
 
-gameCells.forEach((cell) => {
-  cell.style.backgroundColor = "none";
-});
 let cnt = 0;
 let cnt1 = 0;
 

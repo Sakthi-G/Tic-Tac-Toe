@@ -12,9 +12,10 @@
 }
 
 .gaming-section {
-  background-image: url(../assets/white-gray-geometric-pattern.webp);
+  background-image: url(../assets/wave.svg);
   background-color: whitesmoke;
-  background-size: cover;
+  background-size: 100%;
+  background-position: bottom;
   background-repeat: no-repeat;
   border-radius: 15px;
   filter: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.4));

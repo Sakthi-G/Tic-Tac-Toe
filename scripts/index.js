@@ -24,7 +24,14 @@ let loginImgHolder = document.querySelector(".login-image-holder"),
   loginPassword = document.getElementById("login-password"),
   //snackbar
   loginSnackBar = document.getElementById("login-snackbar"),
-  userNotFoundSnackBar = document.getElementById("login-snackbar-notfound");
+  userNotFoundSnackBar = document.getElementById("login-snackbar-notfound"),
+  //sign-up-warning's
+  emailWarning = document.querySelector(".email-id-warning"),
+  userNameWarning = document.querySelector(".username-warning"),
+  passwordWarning = document.querySelector(".password-warning"),
+  //login-page-warning's
+  loginEmailWarning = document.querySelector(".login-email-id-warning"),
+  loginPasswordWarning = document.querySelector(".login-password-warning");
 
 let validEmail =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -37,12 +44,26 @@ setInterval(() => {
 }, 3000);
 
 signUpEntry.addEventListener("click", () => {
+  eyeIcon2.classList.add("fa-eye-slash");
+  passwordInput.type = "password";
+  document.getElementById("sign-up-form").reset();
+  emailWarning.innerText =
+    passwordWarning.innerText =
+    userNameWarning.innerText =
+      null;
+
   loginPage.classList.add("inactive");
   signUpPage.classList.add("active");
   signUpPage.classList.remove("inactive");
 });
 
 loginEntry.addEventListener("click", () => {
+  eyeIcon1.classList.add("fa-eye-slash");
+  loginPassword.type = "password";
+  document.getElementById("login-form").reset();
+  loginEmailWarning.innerText = null;
+  loginPasswordWarning.innerText = null;
+
   loginPage.classList.add("active");
   loginPage.classList.remove("inactive");
   signUpPage.classList.add("inactive");
@@ -80,14 +101,35 @@ infoIcon.addEventListener("click", () => {
   else passwordRequirements.classList.add("show");
 });
 
+window.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    if (loginPage.classList.contains("inactive")) signUpButton.click();
+    else loginButton.click();
+  }
+});
+
+window.addEventListener("click", (event) => {
+  if (
+    !infoIcon.contains(event.target) &&
+    !passwordRequirements.contains(event.target)
+  ) {
+    passwordRequirements.classList.remove("show");
+  }
+});
+
+window.addEventListener("click", (event) => {
+  if (
+    !loginInfoIcon.contains(event.target) &&
+    !loginPasswordRequirements.contains(event.target)
+  ) {
+    loginPasswordRequirements.classList.remove("show");
+  }
+});
+
 signUpButton.addEventListener("click", signUpVerification);
 loginButton.addEventListener("click", logInVerification);
 
 async function signUpVerification() {
-  let emailWarning = document.querySelector(".email-id-warning"),
-    userNameWarning = document.querySelector(".username-warning"),
-    passwordWarning = document.querySelector(".password-warning");
-
   emailWarning.innerText =
     passwordWarning.innerText =
     userNameWarning.innerText =
@@ -142,9 +184,6 @@ async function signUpVerification() {
 }
 
 async function logInVerification() {
-  let loginEmailWarning = document.querySelector(".login-email-id-warning"),
-    loginPasswordWarning = document.querySelector(".login-password-warning");
-
   loginEmailWarning.innerText = null;
   loginPasswordWarning.innerText = null;
 

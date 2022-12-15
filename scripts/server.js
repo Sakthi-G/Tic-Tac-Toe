@@ -23,26 +23,6 @@ app.get("/", (request, response) => {
   response.sendFile(path.join(__dirname, "../html/index.html"));
 });
 
-app.get("/index.html", (request, response) => {
-  response.sendFile(path.join(__dirname, "../html/index.html"));
-});
-
-app.get("/home.html", (request, response) => {
-  response.sendFile(path.join(__dirname, "../html/home.html"));
-});
-
-app.get("/replay.html", (request, response) => {
-  response.sendFile(path.join(__dirname, "../html/replay.html"));
-});
-
-app.get("/game.html", (request, response) => {
-  response.sendFile(path.join(__dirname, "../html/game.html"));
-});
-
-app.get("/profile.html", (request, response) => {
-  response.sendFile(path.join(__dirname, "../html/profile.html"));
-});
-
 app.post("/signup", function (request, response) {
   let userCredentials = JSON.parse(
     fs.readFileSync(path.join(__dirname, "../data/user-details.json"))
