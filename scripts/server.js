@@ -4,7 +4,7 @@ let fs = require("fs");
 let path = require("path");
 
 let gameDetails = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, "../data/game-history.json"))
+  fs.readFileSync(path.join(__dirname, "../data/game-history.json"))
 );
 let currentUserName, counter;
 
@@ -45,7 +45,7 @@ app.get("/profile.html", (request, response) => {
 
 app.post("/signup", function (request, response) {
   let userCredentials = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, "../data/user-details.json"))
+    fs.readFileSync(path.join(__dirname, "../data/user-details.json"))
   );
   if (!(request.body.userEmail in userCredentials)) {
     userCredentials[request.body.userEmail] = {
@@ -54,7 +54,7 @@ app.post("/signup", function (request, response) {
       password: request.body.password,
     };
     fs.writeFile(
-      path.resolve(__dirname, "../data/user-details.json"),
+      path.join(__dirname, "../data/user-details.json"),
       JSON.stringify(userCredentials),
       (error) => {
         if (error) console.log(error);
@@ -71,7 +71,7 @@ app.post("/signup", function (request, response) {
 // Post request for Login validation
 app.post("/login", function (request, response) {
   let userCredentials = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, "../data/user-details.json"))
+    fs.readFileSync(path.join(__dirname, "../data/user-details.json"))
   );
   if (request.body.userEmail in userCredentials) {
     if (
@@ -98,7 +98,7 @@ app.get("/currentUser", (request, response) => {
 
 app.post("/gameHistory", (request, response) => {
   let matchReport = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, "../data/game-history.json"))
+    fs.readFileSync(path.join(__dirname, "../data/game-history.json"))
   );
 
   matchReport[request.body.player + " " + ++counter] = {
@@ -113,7 +113,7 @@ app.post("/gameHistory", (request, response) => {
   };
 
   fs.writeFile(
-    path.resolve(__dirname, "../data/game-history.json"),
+    path.join(__dirname, "../data/game-history.json"),
     JSON.stringify(matchReport),
     (error) => {
       if (error) console.log(error);
@@ -121,4 +121,4 @@ app.post("/gameHistory", (request, response) => {
   );
 });
 
-app.listen(9999);
+app.listen(9999 || process.env.PORT);

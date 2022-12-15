@@ -95,8 +95,8 @@
 .player-mode img {
   border-radius: 10px;
   cursor: pointer;
-  height: 170px;
-  width: 170px;
+  height: 180px;
+  width: 180px;
 }
 
 .player-mode:hover {

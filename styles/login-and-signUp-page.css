@@ -13,7 +13,9 @@
 
 .gaming-section {
   background-image: url(../assets/white-gray-geometric-pattern.webp);
+  background-color: whitesmoke;
   background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 15px;
   filter: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.4));
   height: 80vh;
@@ -149,14 +151,6 @@
 .welcome-img-heading {
   font-weight: bold;
   margin-bottom: 5px;
-}
-
-.eye-icon-holder-2 {
-  top: 71%;
-}
-
-.eye-icon-holder-3 {
-  top: 44%;
 }
 
 i {

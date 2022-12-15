@@ -94,6 +94,14 @@ if (difficultyChoice === "Easy") {
   gameLevel.innerHTML = "Impossible to Win";
 }
 
+let playerEasyScore = 0,
+  playerMediumScore = 0,
+  playerHardScore = 0;
+
+let opponentEasyScore = 0,
+  opponentMediumScore = 0,
+  opponentHardScore = 0;
+
 humanPlayer = choosenCharacter[0].innerHTML;
 aiPlayer = humanPlayer === xIcon ? oIcon : xIcon;
 
@@ -174,9 +182,9 @@ function manualGamePlay() {
       }
       if (a === b && b === c) {
         winState = winCondition;
-        cells[winCondition[0]].style = "background-color: rgb(185, 220, 162)";
-        cells[winCondition[1]].style = "background-color: rgb(185, 220, 162)";
-        cells[winCondition[2]].style = "background-color: rgb(185, 220, 162)";
+        cells[winCondition[0]].style = "background-color: rgb(13, 222, 180)";
+        cells[winCondition[1]].style = "background-color: rgb(13, 222, 180)";
+        cells[winCondition[2]].style = "background-color: rgb(13, 222, 180)";
 
         roundWon = true;
         break;
@@ -370,7 +378,7 @@ function hardeModeWinningMessage({ index, player }) {
   gameBoard = false;
   clearInterval(timer);
   for (let i of winningConditions[index]) {
-    document.getElementById(i).style.backgroundColor = "rgb(185, 220, 162)";
+    document.getElementById(i).style.backgroundColor = "rgb(13, 222, 180)";
   }
 
   currentPlayer = player === humanPlayer ? humanPlayer : aiPlayer;
@@ -412,7 +420,8 @@ function botPicksSpot() {
     if (emptySquares().length > 3) return emptySquares()[3];
     else return emptySquares()[1];
   } else if (difficultyChoice === "Medium") {
-    if (emptySquares().length > 7) return emptySquares()[2];
+    if (player1Score % 2 === 0 && emptySquares().length >= 3)
+      return emptySquares()[2];
     else return minimax(origBoard, aiPlayer).index;
   } else return minimax(origBoard, aiPlayer).index;
 }

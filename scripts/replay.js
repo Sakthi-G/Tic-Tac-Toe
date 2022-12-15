@@ -109,6 +109,9 @@ choosenCharacter[0].innerHTML = replayObject.player1;
 choosenCharacter[1].innerHTML = replayObject.player2;
 playersName[1].innerHTML = replayObject.opponentName;
 
+gameCells.forEach((cell) => {
+  cell.style.backgroundColor = "none";
+});
 let cnt = 0;
 let cnt1 = 0;
 
@@ -119,7 +122,7 @@ function appendCharacter() {
     cnt = cnt1 = 0;
     if (!(replayObject.gameResult === "Draw")) {
       for (let i = 0; i < 3; i++) {
-        gameCells[winCondition[i]].style.backgroundColor = "rgb(185, 220, 162)";
+        gameCells[winCondition[i]].style.backgroundColor = "rgb(13, 222, 180)";
       }
     }
     pausePlayButton.style.filter = "invert(0.5)";
