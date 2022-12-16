@@ -30,7 +30,7 @@ let buttonIndex = sessionStorage.getItem("button"),
 
 document.querySelectorAll(".cell").forEach((cell) => {
   cell.innerHTML = null;
-  cell.style = "background:none";
+  cell.style = "background:none; cursor:default";
 });
 
 Object.keys(gameDetails).forEach((element) => {
@@ -97,7 +97,7 @@ playAgainButton.addEventListener("click", () => {
   clearInterval(initialTimer);
   document.querySelectorAll(".cell").forEach((cell) => {
     cell.innerHTML = null;
-    cell.style = "background:none";
+    cell.style = "background:none; cursor:default";
   });
   cnt = cnt1 = 0;
   initialTimer = setInterval(appendCharacter, playbackTime);

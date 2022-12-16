@@ -51,6 +51,7 @@ signUpEntry.addEventListener("click", () => {
     passwordWarning.innerText =
     userNameWarning.innerText =
       null;
+  passwordRequirements.classList.remove("show");
 
   loginPage.classList.add("inactive");
   signUpPage.classList.add("active");
@@ -110,15 +111,6 @@ window.addEventListener("keypress", (event) => {
 
 window.addEventListener("click", (event) => {
   if (
-    !infoIcon.contains(event.target) &&
-    !passwordRequirements.contains(event.target)
-  ) {
-    passwordRequirements.classList.remove("show");
-  }
-});
-
-window.addEventListener("click", (event) => {
-  if (
     !loginInfoIcon.contains(event.target) &&
     !loginPasswordRequirements.contains(event.target)
   ) {
@@ -173,6 +165,9 @@ async function signUpVerification() {
             }, 5000);
             document.getElementById("sign-up-form").reset();
             document.getElementById("login-form").reset();
+            loginEmailWarning.innerText = null;
+            loginPasswordWarning.innerText = null;
+            passwordRequirements.classList.toggle("show");
           } else {
             emailWarning.textContent =
               "Email Id already exists. Login or try another Email Id";
