@@ -8,7 +8,9 @@ let exitButton = document.getElementById("exit-icon"),
   playersName = document.querySelectorAll(".player-name"),
   gameLevel = document.querySelector(".game-level"),
   playersScore = document.querySelectorAll(".player-score"),
-  choosenCharacter = document.querySelectorAll(".choosen-character");
+  choosenCharacter = document.querySelectorAll(".choosen-character"),
+  playerAvatar = document.querySelector(".user-avatar-1"),
+  opponentAvatar = document.querySelector(".user-avatar-2");
 
 let xIcon = `<img src="../assets/x-icon.png" alt="x-icon">`,
   oIcon = `<img src="../assets/o-icon.png" alt="o-icon">`,
@@ -22,6 +24,7 @@ let gamePlayMode = [],
   gameActive = true,
   gameBoard = true,
   gameResult,
+  opponentWinner,
   aiPlayer,
   humanPlayer,
   player1Score = (player2Score = 0);
@@ -72,26 +75,31 @@ if (userChoiceForPlaying === "First") {
   firstPlayer = "right-player";
 }
 
+playerAvatar.innerText = accountHolder.charAt(0);
 if (userChoiceForOpponent === "playerVsCpu") {
   gameLevel.parentNode.classList.remove("inactive");
   playersName[1].innerHTML = "PC";
+  opponentAvatar.innerText = "P";
 } else {
   manualGamePlay();
   playersName[1].innerHTML = opponentPlayerName;
+  opponentAvatar.innerText = accountHolder.charAt(0);
 }
 
-if (difficultyChoice === "Easy") {
-  onStartGame();
-  gameLevel.style = "color:green";
-  gameLevel.innerHTML = "Easy";
-} else if (difficultyChoice === "Medium") {
-  onStartGame();
-  gameLevel.style = "color:orange";
-  gameLevel.innerHTML = "Medium";
-} else {
-  onStartGame();
-  gameLevel.style = "color: purple";
-  gameLevel.innerHTML = "Impossible to Win";
+if (userChoiceForOpponent === "playerVsCpu") {
+  if (difficultyChoice === "Easy") {
+    onStartGame();
+    gameLevel.style = "color:green";
+    gameLevel.innerHTML = "Easy";
+  } else if (difficultyChoice === "Medium") {
+    onStartGame();
+    gameLevel.style = "color:orange";
+    gameLevel.innerHTML = "Medium";
+  } else {
+    onStartGame();
+    gameLevel.style = "color: purple";
+    gameLevel.innerHTML = "Impossible to Win";
+  }
 }
 
 let playerEasyScore = 0,
@@ -321,10 +329,10 @@ function onTurnClick(e) {
     hardeModeDrawMessage();
     getMatchResult();
   } else {
-    playersMove[0].classList.add("inactive");
-    playersMove[1].classList.add("inactive");
+    setTimeout(() => {
+      opponentWinner = onTurn(botPicksSpot(), aiPlayer);
+    }, 1200);
 
-    opponentWinner = onTurn(botPicksSpot(), aiPlayer);
     if (opponentWinner) {
       gameResult = "Lost";
       playersScore[1].innerHTML = ++player2Score;
@@ -337,17 +345,47 @@ function onTurnClick(e) {
     }
   }
 }
+function randomSpot(winningTile) {
+  let emptyTiles = origBoard.filter((item) => typeof item === "number");
+  for (let i = 0; i < emptyTiles.length; i++) {
+    if (emptyTiles[i] !== winningTile) {
+      return emptyTiles[i];
+    }
+  }
+}
 
 function onTurn(squareId, player) {
+  if (player === aiPlayer || player === choosenCharacter[1].innerHTML) {
+    playersMove[0].classList.remove("inactive");
+    playersMove[1].classList.add("inactive");
+  } else {
+    playersMove[1].classList.remove("inactive");
+    playersMove[0].classList.add("inactive");
+  }
+
   origBoard[squareId] = player;
   gamePlayMode.push(squareId + " " + player);
   if (gameBoard) {
-    document.getElementById(squareId).innerHTML = player;
-    document.getElementById(squareId).style =
-      "background-color: white;cursor: not-allowed";
-    gameState.push(document.getElementById(squareId) + " " + player);
     let isGameWon = onCheckWin(origBoard, player);
-    return isGameWon;
+    if (difficultyChoice === "Easy") {
+      if (player === aiPlayer && isGameWon) {
+        origBoard[squareId] = squareId;
+        let choosenSpot = randomSpot(squareId);
+        onTurn(choosenSpot, aiPlayer);
+      } else {
+        document.getElementById(squareId).innerHTML = player;
+        document.getElementById(squareId).style =
+          "background-color: white;cursor: not-allowed";
+        gameState.push(document.getElementById(squareId) + " " + player);
+        return isGameWon;
+      }
+    } else {
+      document.getElementById(squareId).innerHTML = player;
+      document.getElementById(squareId).style =
+        "background-color: white;cursor: not-allowed";
+      gameState.push(document.getElementById(squareId) + " " + player);
+      return isGameWon;
+    }
   }
 }
 
@@ -487,8 +525,8 @@ replayButton.addEventListener("click", () => {
 
     firstPlayer = "left-player";
   } else {
-    playersMove[1].classList.remove("inactive");
-    playersMove[0].classList.add("inactive");
+    playersMove[0].classList.remove("inactive");
+    playersMove[1].classList.add("inactive");
 
     firstPlayer = "right-player";
   }
@@ -506,6 +544,5 @@ replayButton.addEventListener("click", () => {
   gamePlayMode = [];
   winState = [];
   cells = [];
-
-  onStartGame();
+  if (userChoiceForOpponent === "playerVsCpu") onStartGame();
 });

@@ -1,6 +1,7 @@
 import gameDetails from "../data/game-history.json" assert { type: "json" };
 
 let opponentName = document.querySelector(".player-2"),
+  opponentAvatar = document.querySelector(".user-avatar-2"),
   matchMode = document.querySelector(".gaming-mode"),
   time = document.querySelector(".game-time"),
   result = document.querySelector(".game-result"),
@@ -15,7 +16,10 @@ let opponentName = document.querySelector(".player-2"),
   reducedSpeedButton = playbackSpeedTab.querySelector(".reduced-speed"),
   playbackSpeedDesign = window.getComputedStyle(playbackSpeedTab),
   increasedSpeedButton = playbackSpeedTab.querySelector(".increased-speed"),
-  choosenCharacter = document.querySelectorAll(".choosen-character");
+  choosenCharacter = document.querySelectorAll(".choosen-character"),
+  homeIcon = document.getElementById("home-icon"),
+  profileIcon = document.getElementById("profile-icon"),
+  LogoutIcon = document.getElementById("log-out-icon");
 
 let buttonIndex = sessionStorage.getItem("button"),
   replayObject,
@@ -42,6 +46,8 @@ replayObject.gameState.forEach((element) => {
   gamePlayOrder.push(element.split(" ")[0]);
   gamePlayIcons.push("<" + element.split("<")[1]);
 });
+
+opponentAvatar.innerText = replayObject.opponentName.charAt(0);
 
 normalSpeedButton.addEventListener("click", () => {
   normalSpeedButton.classList.add("selected-speed");
@@ -89,11 +95,10 @@ playAgainButton.addEventListener("click", () => {
   pausePlayButton.style = "cursor: pointer";
   pausePlayButton.addEventListener("click", pausePlayHistory);
 
-  forwrdButton.style = "filter:invert(0.5)";
-  rewindButton.style = "filter:invert(0.5)";
-  pausePlayButton.filter = "invert(0)";
-  playbackSpeedButton.style.filter = "invert(0)";
-  playbackTime = normalSpeed;
+  forwrdButton.style = "filter:invert(0.5); cursor:not-allowed";
+  rewindButton.style = "filter:invert(0.5); cursor:not-allowed";
+  pausePlayButton.style = "filter:invert(0); cursor:pointer";
+  playbackSpeedButton.style = "filter:invert(0); cursor:pointer";
   clearInterval(initialTimer);
   document.querySelectorAll(".cell").forEach((cell) => {
     cell.innerHTML = null;
@@ -101,10 +106,6 @@ playAgainButton.addEventListener("click", () => {
   });
   cnt = cnt1 = 0;
   initialTimer = setInterval(appendCharacter, playbackTime);
-  normalSpeedButton.classList.add("selected-speed");
-  if (reducedSpeedButton.classList.contains("selected-speed"))
-    reducedSpeedButton.classList.remove("selected-speed");
-  else increasedSpeedButton.classList.remove("selected-speed");
 });
 
 opponentName.textContent = replayObject.opponentName;
@@ -131,9 +132,9 @@ function appendCharacter() {
         gameCells[winCondition[i]].style.backgroundColor = "rgb(13, 222, 180)";
       }
     }
-    pausePlayButton.style.filter = "invert(0.5)";
+    pausePlayButton.style = "filter:invert(0.5); cursor:not-allowed";
     pausePlayButton.removeEventListener("click", pausePlayHistory);
-    playbackSpeedButton.style.filter = "invert(0.5)";
+    playbackSpeedButton.style = "filter:invert(0.5); cursor:not-allowed";
     clearInterval(initialTimer);
   }
 }
@@ -153,12 +154,12 @@ function reverseAppendCharacterOneByOne(gamePlayOrder) {
 function pausePlayHistory() {
   if (pausePlayButton.alt === "pause-button") {
     clearInterval(initialTimer);
-    forwrdButton.style = "filter:invert(0)";
-    rewindButton.style = "filter:invert(0)";
+    forwrdButton.style = "filter:invert(0); cursor:pointer";
+    rewindButton.style = "filter:invert(0); cursor:pointer";
   } else {
     initialTimer = setInterval(appendCharacter, playbackTime);
-    forwrdButton.style = "filter:invert(0.5)";
-    rewindButton.style = "filter:invert(0.5)";
+    forwrdButton.style = "filter:invert(0.5); cursor:not-allowed";
+    rewindButton.style = "filter:invert(0.5); cursor:not-allowed";
   }
   pausePlayButton.src =
     pausePlayButton.alt === "pause-button"
@@ -184,11 +185,18 @@ forwrdButton.addEventListener("click", () => {
     if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0)
       forwardAppendCharacterOneByOne(gamePlayIcons, gamePlayOrder);
     else {
-      pausePlayButton.style.filter = "invert(0.5)";
-      rewindButton.style.filter = "invert(0.5)";
-      forwrdButton.style.filter = "invert(0.5)";
+      pausePlayButton.style = "filter:invert(0.5); cursor:not-allowed";
+      rewindButton.style = "cursor:not-allowed";
+      forwrdButton.style = "cursor:not-allowed";
+      playbackSpeedButton.style = "filter:invert(0.5); cursor:not-allowed";
       pausePlayButton.removeEventListener("click", pausePlayHistory);
-      playbackSpeedButton.style.filter = "invert(0.5)";
+
+      if (!(replayObject.gameResult === "Draw")) {
+        for (let i = 0; i < 3; i++) {
+          gameCells[winCondition[i]].style.backgroundColor =
+            "rgb(13, 222, 180)";
+        }
+      }
     }
   }
 });
@@ -198,11 +206,11 @@ rewindButton.addEventListener("click", () => {
     if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0)
       reverseAppendCharacterOneByOne(gamePlayOrder);
     else {
-      pausePlayButton.style.filter = "invert(0.5)";
-      rewindButton.style.filter = "invert(0.5)";
-      forwrdButton.style.filter = "invert(0.5)";
+      pausePlayButton.style = "filter:invert(0.5); cursor:not-allowed";
+      rewindButton.style = "cursor:not-allowed";
+      forwrdButton.style = "cursor:not-allowed";
+      playbackSpeedButton.style = "filter:invert(0.5); cursor:not-allowed";
       pausePlayButton.removeEventListener("click", pausePlayHistory);
-      playbackSpeedButton.style.filter = "invert(0.5)";
     }
   }
 });
@@ -216,3 +224,24 @@ document.addEventListener("click", function handleClickOutsideBox(event) {
   }
 });
 normalSpeedButton.click();
+
+homeIcon.addEventListener("mouseover", () => {
+  homeIcon.style = "filter:invert(1)";
+});
+homeIcon.addEventListener("mouseout", () => {
+  homeIcon.style = "filter:invert(0)";
+});
+
+LogoutIcon.addEventListener("mouseover", () => {
+  LogoutIcon.style = "filter:invert(1)";
+});
+LogoutIcon.addEventListener("mouseout", () => {
+  LogoutIcon.style = "filter:invert(0)";
+});
+
+profileIcon.addEventListener("mouseover", () => {
+  profileIcon.style = "filter:invert(1)";
+});
+profileIcon.addEventListener("mouseout", () => {
+  profileIcon.style = "filter:invert(0)";
+});

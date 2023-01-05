@@ -2,6 +2,7 @@ let express = require("express");
 let app = express();
 let fs = require("fs");
 let path = require("path");
+let bodyParser = require("body-parser");
 
 let gameDetails = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../data/game-history.json"))
@@ -17,6 +18,7 @@ if (Object.keys(gameDetails).length === 0) {
 
 // Middlewares to load the static files
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..")));
 
 app.get("/", (request, response) => {

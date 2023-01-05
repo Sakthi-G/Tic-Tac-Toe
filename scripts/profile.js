@@ -7,9 +7,28 @@ let gameHistoryData = document.querySelector(".game-history-data"),
   gamesWon = document.getElementById("games-won"),
   gamesLost = document.getElementById("games-lost"),
   drawGames = document.getElementById("draw-games"),
-  profileUserName = document.querySelector(".profile-username");
+  profileUserName = document.querySelector(".profile-username"),
+  homeIcon = document.getElementById("home-icon"),
+  profileIcon = document.getElementById("profile-icon"),
+  LogoutIcon = document.getElementById("log-out-icon");
 
 let accountHolder = sessionStorage.getItem("accountHolder");
+
+profileIcon.style = "filter:invert(1); cursor:default";
+
+homeIcon.addEventListener("mouseover", () => {
+  homeIcon.style = "filter:invert(1)";
+});
+homeIcon.addEventListener("mouseout", () => {
+  homeIcon.style = "filter:invert(0)";
+});
+
+LogoutIcon.addEventListener("mouseover", () => {
+  LogoutIcon.style = "filter:invert(1)";
+});
+LogoutIcon.addEventListener("mouseout", () => {
+  LogoutIcon.style = "filter:invert(0)";
+});
 
 let totalGames = 0,
   winGame = 0,
@@ -34,12 +53,14 @@ totalGamesPlayed.textContent = totalGames;
 profileUserName.textContent = sessionStorage.getItem("accountHolder");
 userNameFirstLetter.textContent = sessionStorage.getItem("accountHolder")[0];
 
-Object.keys(gameDetails).forEach((element) => {
-  if (
-    element.split(" ")[0] !== "undefined" &&
-    element.split(" ")[0] === accountHolder
-  ) {
-    gameHistoryData.innerHTML += `<div class="game-data">
+Object.keys(gameDetails)
+  .reverse()
+  .forEach((element) => {
+    if (
+      element.split(" ")[0] !== "undefined" &&
+      element.split(" ")[0] === accountHolder
+    ) {
+      gameHistoryData.innerHTML += `<div class="game-data">
                 <div class="profile-opponent-name"> ${
                   gameDetails[element].opponentName
                 }</div>
@@ -65,8 +86,8 @@ Object.keys(gameDetails).forEach((element) => {
               </div>
               </div>
               `;
-  }
-});
+    }
+  });
 let playHistory = document.querySelectorAll(".history-button");
 
 playHistory.forEach((button) => {

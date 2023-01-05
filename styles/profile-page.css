@@ -77,6 +77,8 @@
 }
 
 .game-history-data {
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
 }
 

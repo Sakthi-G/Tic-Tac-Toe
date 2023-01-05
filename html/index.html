@@ -56,7 +56,10 @@
             />
             <i class="fas fa-duotone fa-eye fa-eye-slash" id="eye-icon-1"></i>
             <div id="info-icon-login">
-              <i class="fas fa-duotone fa-info"></i>
+              <i
+                class="fas fa-duotone fa-info"
+                title="Password Requirements"
+              ></i>
             </div>
             <div class="password-requirement-login">
               * Password should contain minimum of 8 & maximum of 15 characters
@@ -152,10 +155,18 @@
             <label for="sign-up-password" class="label-heading">Password</label>
           </div>
           <div>
-            <input class="user-input" type="password" id="sign-up-password" />
+            <input
+              class="user-input"
+              type="password"
+              id="sign-up-password"
+              maxlength="15"
+            />
             <i class="fas fa-duotone fa-eye fa-eye-slash" id="eye-icon-2"></i>
             <div id="info-icon">
-              <i class="fas fa-duotone fa-info"></i>
+              <i
+                class="fas fa-duotone fa-info"
+                title="Password Requirements"
+              ></i>
             </div>
             <div class="password-requirement">
               * Password should contain minimum of 8 & maximum of 15 characters
@@ -164,6 +175,7 @@
               character
             </div>
           </div>
+          <div class="password-warning"></div>
           <div>
             <label for="confirm-password" class="label-heading"
               >Confirm Password</label
@@ -172,7 +184,7 @@
           <div>
             <input class="user-input" type="text" id="confirm-password" />
           </div>
-          <div class="password-warning"></div>
+          <div class="confirm-password-warning"></div>
           <button id="sign-up-button" type="button">Create Account</button>
         </form>
         <div class="login-info">

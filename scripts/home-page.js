@@ -6,6 +6,8 @@ let playerVsPlayerButton = document.getElementById("player-vs-player"),
   againstCpuPage = document.querySelector(".character-choice"),
   gameModeSelectionPage = document.querySelector(".game-mode"),
   homeIcon = document.getElementById("home-icon"),
+  profileIcon = document.getElementById("profile-icon"),
+  LogoutIcon = document.getElementById("log-out-icon"),
   backArrow = document.querySelector(".back-arrow-button"),
   userChoiceForPlaying = document.querySelector(".choice"),
   choiceToPlayFirst = document.getElementById("choice-yes"),
@@ -70,8 +72,23 @@ startGameButton.addEventListener("click", () => {
   }
 });
 
+homeIcon.style = "filter:invert(1); cursor:default";
+
+profileIcon.addEventListener("mouseover", () => {
+  profileIcon.style = "filter:invert(1)";
+});
+profileIcon.addEventListener("mouseout", () => {
+  profileIcon.style = "filter:invert(0)";
+});
+
+LogoutIcon.addEventListener("mouseover", () => {
+  LogoutIcon.style = "filter:invert(1)";
+});
+LogoutIcon.addEventListener("mouseout", () => {
+  LogoutIcon.style = "filter:invert(0)";
+});
+
 nextButton.addEventListener("click", switchPage);
-homeIcon.addEventListener("click", navigateToHome);
 backArrow.addEventListener("click", navigateToHome);
 
 function navigateToHome() {
@@ -84,7 +101,6 @@ function switchPage() {
   } else {
     selfGamePage.classList.remove("inactive");
   }
-  homeIcon.classList.remove("inactive");
   backArrow.classList.remove("inactive");
   userChoiceForPlaying.classList.remove("inactive");
   startGameButton.classList.remove("inactive");

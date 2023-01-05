@@ -20,15 +20,34 @@
 
       <div class="game-nav-bar">
         <header class="navigation-tab">
-          <div class="navigation-icons active" id="home-icon">
+          <div class="navigation-icons active" id="home-icon-holder">
             <a href="./home.html">
-              <img src="../assets/home-icon.png" alt="home-icon" />
+              <img
+                id="home-icon"
+                src="../assets/home-icon.png"
+                alt="home-icon"
+                title="Home"
+              />
             </a>
           </div>
-          <div class="navigation-icons">
+          <div class="navigation-icons active">
             <a href="./profile.html">
-              <img src="../assets/user.png" alt="profile-icon" />
+              <img
+                id="profile-icon"
+                src="../assets/user.png"
+                alt="profile-icon"
+                title="Profile"
+              />
             </a>
+          </div>
+          <div class="navigation-icons active">
+            <a href="./index.html">
+              <img
+                id="log-out-icon"
+                src="../assets/log-out-icon.png"
+                alt="log-out-icon"
+                title="Log Out"
+            /></a>
           </div>
         </header>
       </div>
@@ -73,26 +92,40 @@
 
         <div class="replay-controls active">
           <div class="playback reverse-seeking-button">
-            <img src="../assets/rewind.png" alt="rewind-button" />
+            <img
+              src="../assets/rewind.png"
+              alt="rewind-button"
+              title="Reverse Seek"
+            />
           </div>
           <div class="playback pause-play-button pause play">
             <img
               class="pause-button"
               src="../assets/pause.png"
               alt="pause-button"
+              title="Play/Pause"
             />
           </div>
           <div class="playback forward-seeking-button">
-            <img src="../assets/fast-forward.png" alt="fast-forward-icon" />
+            <img
+              src="../assets/fast-forward.png"
+              alt="fast-forward-icon"
+              title="Forward Seek"
+            />
           </div>
           <div class="playback playback-speed-button">
             <img
               src="../assets/playback-speed.png"
               alt="playback-speed-button"
+              title="Playback Speed"
             />
           </div>
           <div class="playback play-again-button">
-            <img src="../assets/replay.png" alt="play-again-button" />
+            <img
+              src="../assets/replay.png"
+              alt="play-again-button"
+              title="Play Again"
+            />
           </div>
         </div>
 
@@ -115,9 +148,6 @@
         <div class="next-player-name">someone</div>
         <div class="next-difficulty-mode">Easy</div>
         <div class="next-game-time-taken">2.00</div>
-        <div class="right-arrow">
-          <img src="../assets/right-arrow.png" alt="play-next-icon" />
-        </div>
       </div>
     </div>
     <script type="module" src="../scripts/replay.js"></script>

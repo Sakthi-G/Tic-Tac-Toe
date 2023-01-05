@@ -29,6 +29,7 @@ let loginImgHolder = document.querySelector(".login-image-holder"),
   emailWarning = document.querySelector(".email-id-warning"),
   userNameWarning = document.querySelector(".username-warning"),
   passwordWarning = document.querySelector(".password-warning"),
+  confirmPasswordWarning = document.querySelector(".confirm-password-warning"),
   //login-page-warning's
   loginEmailWarning = document.querySelector(".login-email-id-warning"),
   loginPasswordWarning = document.querySelector(".login-password-warning");
@@ -49,6 +50,7 @@ signUpEntry.addEventListener("click", () => {
   document.getElementById("sign-up-form").reset();
   emailWarning.innerText =
     passwordWarning.innerText =
+    confirmPasswordWarning.innerText =
     userNameWarning.innerText =
       null;
   passwordRequirements.classList.remove("show");
@@ -118,19 +120,34 @@ window.addEventListener("click", (event) => {
   }
 });
 
+window.addEventListener("click", (event) => {
+  if (
+    !infoIcon.contains(event.target) &&
+    !passwordRequirements.contains(event.target)
+  ) {
+    passwordRequirements.classList.remove("show");
+  }
+});
+
 signUpButton.addEventListener("click", signUpVerification);
 loginButton.addEventListener("click", logInVerification);
 
 async function signUpVerification() {
   emailWarning.innerText =
     passwordWarning.innerText =
+    confirmPasswordWarning.innerText =
     userNameWarning.innerText =
       null;
+  passwordRequirements.classList.remove("show");
 
   if (userName.value.length === 0) {
     userNameWarning.innerText = "Please provide Username";
   } else {
-    if (emailId.value.length === 0) {
+    if (userName.value.charAt(0) === " ") {
+      userNameWarning.innerText = "Username should not start with Space";
+    } else if (userName.value.replace(/\s+/g, "").length === 0) {
+      userNameWarning.innerText = "Please Provide a Valid Username";
+    } else if (emailId.value.length === 0) {
       emailWarning.innerText = "Please provide Email Id";
     } else if (
       !(
@@ -141,14 +158,14 @@ async function signUpVerification() {
       emailWarning.innerText = "Please Enter a valid Email Id";
     } else {
       if (
-        passwordInput.value.length < 8 ||
-        !passwordInput.value.match(validPassword)
+        !passwordInput.value.match(validPassword) &&
+        !passwordInput.value.replace(/\s+/g, "").match(validPassword)
       ) {
-        passwordRequirements.classList.add("show");
+        passwordWarning.innerText =
+          "Too Weak Password. Check the Requirements.";
       } else {
-        passwordRequirements.classList.remove("show");
         if (!(passwordInput.value === confirmPasswordInput.value)) {
-          passwordWarning.innerText = "Passwords do not match";
+          confirmPasswordWarning.innerText = "Passwords do not match";
         } else {
           signUpDetails = {
             userName: userName.value,
