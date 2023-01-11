@@ -24,7 +24,6 @@ let gamePlayMode = [],
   gameActive = true,
   gameBoard = true,
   gameResult,
-  opponentWinner,
   aiPlayer,
   humanPlayer,
   player1Score = (player2Score = 0);
@@ -71,7 +70,11 @@ if (userChoiceForPlaying === "First") {
   playersMove[0].classList.remove("inactive");
   firstPlayer = "left-player";
 } else {
-  playersMove[1].classList.remove("inactive");
+  if (userChoiceForOpponent === "playerVsCpu") {
+    playersMove[0].classList.remove("inactive");
+  } else {
+    playersMove[1].classList.remove("inactive");
+  }
   firstPlayer = "right-player";
 }
 
@@ -329,10 +332,10 @@ function onTurnClick(e) {
     hardeModeDrawMessage();
     getMatchResult();
   } else {
-    setTimeout(() => {
-      opponentWinner = onTurn(botPicksSpot(), aiPlayer);
-    }, 1200);
+    playersMove[0].classList.add("inactive");
+    playersMove[1].classList.add("inactive");
 
+    opponentWinner = onTurn(botPicksSpot(), aiPlayer);
     if (opponentWinner) {
       gameResult = "Lost";
       playersScore[1].innerHTML = ++player2Score;
@@ -354,31 +357,39 @@ function randomSpot(winningTile) {
   }
 }
 
+let checkerArray = [];
 function onTurn(squareId, player) {
-  if (player === aiPlayer || player === choosenCharacter[1].innerHTML) {
-    playersMove[0].classList.remove("inactive");
-    playersMove[1].classList.add("inactive");
-  } else {
-    playersMove[1].classList.remove("inactive");
-    playersMove[0].classList.add("inactive");
-  }
-
   origBoard[squareId] = player;
   gamePlayMode.push(squareId + " " + player);
   if (gameBoard) {
     let isGameWon = onCheckWin(origBoard, player);
-    if (difficultyChoice === "Easy") {
-      if (player === aiPlayer && isGameWon) {
-        origBoard[squareId] = squareId;
-        let choosenSpot = randomSpot(squareId);
-        onTurn(choosenSpot, aiPlayer);
-      } else {
+    if (difficultyChoice === "Easy" && player === aiPlayer && isGameWon) {
+      origBoard[squareId] = squareId;
+      let choosenSpot = randomSpot(squareId);
+      checkerArray.push(choosenSpot);
+      let emptyTiles = origBoard.filter((item) => typeof item === "number");
+      if (emptyTiles.length <= 1 && userChoiceForPlaying === "Second") {
         document.getElementById(squareId).innerHTML = player;
         document.getElementById(squareId).style =
           "background-color: white;cursor: not-allowed";
         gameState.push(document.getElementById(squareId) + " " + player);
         return isGameWon;
       }
+
+      if (checkerArray.includes(choosenSpot)) {
+        let previousSpot = randomSpot(squareId);
+        origBoard[squareId] = squareId;
+        origBoard[previousSpot] = player;
+        gamePlayMode.pop();
+        gamePlayMode.push(previousSpot + " " + player);
+        isGameWon = onCheckWin(origBoard, player);
+
+        document.getElementById(previousSpot).innerHTML = player;
+        document.getElementById(previousSpot).style =
+          "background-color: white;cursor: not-allowed";
+        gameState.push(document.getElementById(previousSpot) + " " + player);
+        return isGameWon;
+      } else onTurn(choosenSpot, aiPlayer);
     } else {
       document.getElementById(squareId).innerHTML = player;
       document.getElementById(squareId).style =
@@ -455,11 +466,9 @@ function botPicksSpot() {
     if (emptySquares().length >= 3) return emptySquares()[2];
     else return emptySquares()[1];
   } else if (difficultyChoice === "Easy" && userChoiceForPlaying === "Second") {
-    if (emptySquares().length > 3) return emptySquares()[3];
-    else return emptySquares()[1];
+    return emptySquares()[0];
   } else if (difficultyChoice === "Medium") {
-    if (player1Score % 2 === 0 && emptySquares().length >= 3)
-      return emptySquares()[2];
+    if (emptySquares().length > 6) return emptySquares()[2];
     else return minimax(origBoard, aiPlayer).index;
   } else return minimax(origBoard, aiPlayer).index;
 }

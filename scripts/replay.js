@@ -1,6 +1,7 @@
 import gameDetails from "../data/game-history.json" assert { type: "json" };
 
 let opponentName = document.querySelector(".player-2"),
+  playerAvatar = document.querySelector(".user-avatar-1"),
   opponentAvatar = document.querySelector(".user-avatar-2"),
   matchMode = document.querySelector(".gaming-mode"),
   time = document.querySelector(".game-time"),
@@ -47,6 +48,7 @@ replayObject.gameState.forEach((element) => {
   gamePlayIcons.push("<" + element.split("<")[1]);
 });
 
+playerAvatar.innerText = sessionStorage.getItem("accountHolder").charAt(0);
 opponentAvatar.innerText = replayObject.opponentName.charAt(0);
 
 normalSpeedButton.addEventListener("click", () => {
@@ -56,6 +58,8 @@ normalSpeedButton.addEventListener("click", () => {
 
   pausePlayButton.src = "../assets/pause.png";
   pausePlayButton.alt = "pause-button";
+  pausePlayButton.title = "Pause";
+
   clearInterval(initialTimer);
   playbackTime = normalSpeed;
   initialTimer = setInterval(appendCharacter, playbackTime);
@@ -68,6 +72,8 @@ reducedSpeedButton.addEventListener("click", () => {
 
   pausePlayButton.src = "../assets/pause.png";
   pausePlayButton.alt = "pause-button";
+  pausePlayButton.title = "Pause";
+
   clearInterval(initialTimer);
   playbackTime = reducedSpeed;
   initialTimer = setInterval(appendCharacter, playbackTime);
@@ -80,6 +86,8 @@ increasedSpeedButton.addEventListener("click", () => {
 
   pausePlayButton.src = "../assets/pause.png";
   pausePlayButton.alt = "pause-button";
+  pausePlayButton.title = "Pause";
+
   clearInterval(initialTimer);
   playbackTime = increasedSpeed;
   initialTimer = setInterval(appendCharacter, playbackTime);
@@ -92,6 +100,7 @@ document.querySelectorAll(".cell").forEach((cell) => {
 playAgainButton.addEventListener("click", () => {
   pausePlayButton.src = "../assets/pause.png";
   pausePlayButton.alt = "pause-button";
+  pausePlayButton.title = "Pause";
   pausePlayButton.style = "cursor: pointer";
   pausePlayButton.addEventListener("click", pausePlayHistory);
 
@@ -139,16 +148,13 @@ function appendCharacter() {
   }
 }
 
-function forwardAppendCharacterOneByOne(gamePlayIcons, gamePlayOrder) {
-  if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0)
-    gameCells[gamePlayOrder[cnt++]].innerHTML = gamePlayIcons[cnt1++];
+function forwardAppendCharacterOneByOne() {
+  gameCells[gamePlayOrder[cnt++]].innerHTML = gamePlayIcons[cnt1++];
 }
 
-function reverseAppendCharacterOneByOne(gamePlayOrder) {
-  if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0) {
-    gameCells[gamePlayOrder[cnt--]].innerHTML = null;
-    cnt1--;
-  }
+function reverseAppendCharacterOneByOne() {
+  gameCells[gamePlayOrder[--cnt]].innerHTML = "";
+  cnt1 = cnt1 - 1;
 }
 
 function pausePlayHistory() {
@@ -168,6 +174,9 @@ function pausePlayHistory() {
 
   pausePlayButton.alt =
     pausePlayButton.alt === "pause-button" ? "play-button" : "pause-button";
+
+  pausePlayButton.title =
+    pausePlayButton.alt === "pause-button" ? "Pause" : "Play";
 }
 
 function changeVisiblity() {
@@ -182,9 +191,9 @@ pausePlayButton.addEventListener("click", pausePlayHistory);
 
 forwrdButton.addEventListener("click", () => {
   if (forwrdButton.style.filter === "invert(0)") {
-    if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0)
-      forwardAppendCharacterOneByOne(gamePlayIcons, gamePlayOrder);
-    else {
+    if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0) {
+      forwardAppendCharacterOneByOne();
+    } else {
       pausePlayButton.style = "filter:invert(0.5); cursor:not-allowed";
       rewindButton.style = "cursor:not-allowed";
       forwrdButton.style = "cursor:not-allowed";
@@ -203,9 +212,9 @@ forwrdButton.addEventListener("click", () => {
 
 rewindButton.addEventListener("click", () => {
   if (rewindButton.style.filter === "invert(0)") {
-    if (cnt1 < gamePlayIcons.length && cnt1 >= 0 && cnt >= 0)
-      reverseAppendCharacterOneByOne(gamePlayOrder);
-    else {
+    if (cnt1 <= gamePlayIcons.length && cnt1 > 0 && cnt > 0) {
+      reverseAppendCharacterOneByOne();
+    } else {
       pausePlayButton.style = "filter:invert(0.5); cursor:not-allowed";
       rewindButton.style = "cursor:not-allowed";
       forwrdButton.style = "cursor:not-allowed";

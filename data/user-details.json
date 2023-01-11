@@ -83,5 +83,15 @@
     "username": "someone",
     "useremail": "someone123@gmail.com",
     "password": "gamer@123"
+  },
+  "thing@gmail.com": {
+    "username": "  (Some ONE)",
+    "useremail": "thing@gmail.com",
+    "password": "someone@99"
+  },
+  "newone@gmail.com": {
+    "username": "NewUser",
+    "useremail": "newone@gmail.com",
+    "password": "newbie@88"
   }
 }

@@ -72,7 +72,7 @@ startGameButton.addEventListener("click", () => {
   }
 });
 
-homeIcon.style = "filter:invert(1); cursor:default";
+homeIcon.style = "filter:invert(1) drop-shadow(0 0 5px aqua); cursor:default";
 
 profileIcon.addEventListener("mouseover", () => {
   profileIcon.style = "filter:invert(1)";
@@ -110,7 +110,7 @@ function switchPage() {
 
 async function appendPlayerName() {
   let playerName = await getCurrentUserName();
-  sessionStorage.setItem("accountHolder", playerName);
+  sessionStorage.setItem("accountHolder", playerName.trim());
   opponentName.innerText = sessionStorage.getItem("accountHolder");
 }
 appendPlayerName();

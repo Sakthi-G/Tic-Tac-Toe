@@ -14,7 +14,8 @@ let gameHistoryData = document.querySelector(".game-history-data"),
 
 let accountHolder = sessionStorage.getItem("accountHolder");
 
-profileIcon.style = "filter:invert(1); cursor:default";
+profileIcon.style =
+  "filter:invert(1)  drop-shadow(0 0 5px aqua); cursor:default";
 
 homeIcon.addEventListener("mouseover", () => {
   homeIcon.style = "filter:invert(1)";

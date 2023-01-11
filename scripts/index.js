@@ -25,6 +25,9 @@ let loginImgHolder = document.querySelector(".login-image-holder"),
   //snackbar
   loginSnackBar = document.getElementById("login-snackbar"),
   userNotFoundSnackBar = document.getElementById("login-snackbar-notfound"),
+  authenticatedSnackBar = document.getElementById(
+    "login-snackbar-authenticated"
+  ),
   //sign-up-warning's
   emailWarning = document.querySelector(".email-id-warning"),
   userNameWarning = document.querySelector(".username-warning"),
@@ -129,6 +132,17 @@ window.addEventListener("click", (event) => {
   }
 });
 
+userName.addEventListener("keypress", (event) => {
+  if (userName.value.length === 15) {
+    userNameWarning.innerHTML = "Username can contain only 15 Characters.";
+  }
+});
+
+window.addEventListener("click", () => {
+  if (userNameWarning.innerHTML === "Username can contain only 15 Characters.")
+    userNameWarning.innerHTML = null;
+});
+
 signUpButton.addEventListener("click", signUpVerification);
 loginButton.addEventListener("click", logInVerification);
 
@@ -143,10 +157,11 @@ async function signUpVerification() {
   if (userName.value.length === 0) {
     userNameWarning.innerText = "Please provide Username";
   } else {
-    if (userName.value.charAt(0) === " ") {
-      userNameWarning.innerText = "Username should not start with Space";
-    } else if (userName.value.replace(/\s+/g, "").length === 0) {
-      userNameWarning.innerText = "Please Provide a Valid Username";
+    if (userName.value.trim().length === 0) {
+      userNameWarning.innerText = "Please provide a Valid Username";
+    } else if (userName.value.trim().includes(" ")) {
+      userNameWarning.innerText =
+        "Please provide Username without Spaces in the middle";
     } else if (emailId.value.length === 0) {
       emailWarning.innerText = "Please provide Email Id";
     } else if (
@@ -162,7 +177,7 @@ async function signUpVerification() {
         !passwordInput.value.replace(/\s+/g, "").match(validPassword)
       ) {
         passwordWarning.innerText =
-          "Too Weak Password. Check the Requirements.";
+          "Password doesn't meet the requirements. Kindly check it.";
       } else {
         if (!(passwordInput.value === confirmPasswordInput.value)) {
           confirmPasswordWarning.innerText = "Passwords do not match";
@@ -218,7 +233,11 @@ async function logInVerification() {
     let validUser = await existingUserLog(loginUserDetails);
     switch (validUser) {
       case "valid":
-        window.location = "../html/home.html";
+        authenticatedSnackBar.classList.remove("inactive");
+        setTimeout(() => {
+          authenticatedSnackBar.classList.add("inactive");
+          window.location = "../html/home.html";
+        }, 3500);
         break;
       case "wrongPassword":
         loginPasswordWarning.innerText = "Incorrect Password. Kindly check it";
